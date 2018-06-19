@@ -310,6 +310,14 @@ void MainWindow::on_actionValidRole_triggered()
             validValue = micro;
         }
         ui->statusBar->showMessage("恭喜，未触发任何规则。");
+
+        // 验证IF like
+        if(condi == "like" || condi == "包含") {
+            if(validValue.contains(value)) {
+                // 2.1 满足IF, 验证THEN
+                goto validThen;
+            }
+        }
         // 验证IF =
         if(condi == "=") {
             if(validValue == value) {
@@ -346,10 +354,17 @@ void MainWindow::on_actionValidRole_triggered()
                     // 验证THEN =
                     for(int l = 0; l < singelValues.size(); l++) {
                         singelValue = singelValues[l];
-                        if(condi == "=") {
+                        if(condi == "=" || condi == "等于") {
+                            if(validValue != singelValue) {
+                                // 2.1.1 满足THEN, 触发当前规则，弹出提示
+                                QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
+                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
+                            }
+                        }
+                        if(condi == "!=" || condi == "不等于") {
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " + condi + "了 " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -374,68 +389,6 @@ void MainWindow::on_actionValidRole_triggered()
                 }
             }
         }
-        // 验证IF like
-        if(condi == "like" || condi == "包含") {
-            if(validValue.contains(value)) {
-                // 2.1 满足IF, 验证THEN
-                thens = THEN.split(";");
-                QString singelThen, singelValue;
-                QStringList singelThens, singelValues;
-                for(int k = 0; k < thens.size(); k++) {
-                    singelThen = thens[k];
-                    singelThens = singelThen.split(" ");
-                    filed = singelThens[0];     // 字段
-                    condi = singelThens[1];     // 条件
-                    value = singelThens[2];     // 值
-
-                    singelValues = value.split(",");
-
-                    // 处理filed
-                    if(filed == "sex" || filed == "性别") {
-                        validValue = sex;
-                    }
-                    if(filed == "ism" || filed == "送检材料") {
-                        validValue = ism;
-                    }
-                    if(filed == "diagn" || filed == "病理诊断") {
-                        validValue = diagn;
-                    }
-                    if(filed == "gdesc" || filed == "肉眼所见") {
-                        validValue = gdesc;
-                    }
-                    if(filed == "micro" || filed == "镜下所见") {
-                        validValue = micro;
-                    }
-                    // 验证THEN =
-                    for(int l = 0; l < singelValues.size(); l++) {
-                        singelValue = singelValues[l];
-                        if(condi == "=") {
-                            if(validValue == singelValue) {
-                                // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " + condi + "了 " +  singelValue);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
-                            }
-                        }
-                        // 验证THEN like
-                        if(condi == "like" || condi == "包含") {
-                            if(!validValue.contains(singelValue)) {
-                                // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
-                            }
-                        }
-                        // 验证THEN notlike
-                        if(condi == "notlike" || condi == "不包含") {
-                            if(validValue.contains(singelValue)) {
-                                // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
 }
 

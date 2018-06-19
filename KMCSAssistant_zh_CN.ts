@@ -154,13 +154,24 @@
         <translation>病理诊断</translation>
     </message>
     <message>
+        <location filename="roleformwindow.cpp" line="28"/>
+        <location filename="roleformwindow.cpp" line="37"/>
+        <source>=</source>
+        <translation>等于</translation>
+    </message>
+    <message>
         <location filename="roleformwindow.cpp" line="29"/>
-        <location filename="roleformwindow.cpp" line="38"/>
+        <location filename="roleformwindow.cpp" line="39"/>
         <source>like</source>
         <translation>包含</translation>
     </message>
     <message>
-        <location filename="roleformwindow.cpp" line="39"/>
+        <location filename="roleformwindow.cpp" line="38"/>
+        <source>!=</source>
+        <translation>不等于</translation>
+    </message>
+    <message>
+        <location filename="roleformwindow.cpp" line="40"/>
         <source>notlike</source>
         <translation>不包含</translation>
     </message>

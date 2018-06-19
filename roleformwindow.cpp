@@ -25,7 +25,7 @@ RoleFormWindow::RoleFormWindow(QWidget *parent) :
     ui->cbFiled->addItem(QObject::tr("micro"));
     ui->cbFiled->addItem(QObject::tr("diagn"));
 
-    ui->cbCondi->addItem("=");
+    ui->cbCondi->addItem(QObject::tr("="));
     ui->cbCondi->addItem(QObject::tr("like"));
 
     ui->cbFiledThen->addItem(QObject::tr("sex"));
@@ -34,7 +34,8 @@ RoleFormWindow::RoleFormWindow(QWidget *parent) :
     ui->cbFiledThen->addItem(QObject::tr("micro"));
     ui->cbFiledThen->addItem(QObject::tr("diagn"));
 
-    ui->cbCondiThen->addItem("=");
+    ui->cbCondiThen->addItem(QObject::tr("="));
+    ui->cbCondiThen->addItem(QObject::tr("!="));
     ui->cbCondiThen->addItem(QObject::tr("like"));
     ui->cbCondiThen->addItem(QObject::tr("notlike"));
     flag = 0;
