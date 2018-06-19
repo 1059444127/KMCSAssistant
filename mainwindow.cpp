@@ -286,6 +286,9 @@ void MainWindow::on_actionValidRole_triggered()
             ++j;
         }
         // 处理IF
+        if(IF.isEmpty() || IF == "") {
+            goto validThen;
+        }
         ifs = IF.split(" ");
         filed = ifs[0];     // 字段
         condi = ifs[1];     // 条件
@@ -311,6 +314,7 @@ void MainWindow::on_actionValidRole_triggered()
         if(condi == "=") {
             if(validValue == value) {
                 // 2.1 满足IF, 验证THEN
+                validThen:
                 thens = THEN.split(";");
                 QString singelThen, singelValue;
                 QStringList singelThens, singelValues;
@@ -345,7 +349,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "=") {
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " + condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " " + condi + "了 " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -353,7 +357,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "like" || condi == "包含") {
                             if(!validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " +  condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -361,7 +365,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "notlike" || condi == "不包含") {
                             if(validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " +  condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -408,7 +412,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "=") {
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " + condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " " + condi + "了 " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -416,7 +420,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "like" || condi == "包含") {
                             if(!validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " +  condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -424,7 +428,7 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "notlike" || condi == "不包含") {
                             if(validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " " +  condi + " " +  singelValue);
+                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }

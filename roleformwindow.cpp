@@ -72,9 +72,8 @@ void RoleFormWindow::on_addThen_clicked()
     ifValue = ui->leValue->text();
     thenValue = ui->teValueThen->toPlainText();
 
-    if(ifValue == NULL || ifValue == "") {
-        QMessageBox::warning(this, "警告", "请输入条件值");
-        return;
+    if(ifValue.isEmpty() || ifValue == "") {
+        QMessageBox::warning(this, "警告", "未输入【如果】条件值，将会切换至全匹配模式，即当前规则会匹配每一条数据。请谨慎设置！");
     } else {
         if(flag == 0) {
             flag = 1;
@@ -87,7 +86,7 @@ void RoleFormWindow::on_addThen_clicked()
         }
     }
     // 2.生成THEN
-    if(thenValue == NULL || thenValue == "") {
+    if(thenValue.isEmpty() || thenValue == "") {
         QMessageBox::warning(this, "警告", "请输入条件值");
     } else {
         thenFiled = ui->cbFiledThen->currentText();

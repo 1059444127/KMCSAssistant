@@ -116,7 +116,7 @@
     <message>
         <location filename="mainwindow.cpp" line="43"/>
         <source>The window is not started. Please try to restart or quit and start again.</source>
-        <translation>窗口未启动，请尝试重新启动或者退出后再次启动。</translation>
+        <translation>窗口未启动，请尝试启动窗口或者退出后重新启动。</translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="44"/>
