@@ -27,11 +27,15 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     rolemanawindow.cpp \
-    roleformwindow.cpp
+    roleformwindow.cpp \
+    MyGlobalShortCut/MyGlobalShortCut.cpp \
+    MyGlobalShortCut/MyWinEventFilter.cpp
 
 HEADERS  += mainwindow.h \
     rolemanawindow.h \
-    roleformwindow.h
+    roleformwindow.h \
+    MyGlobalShortCut/MyGlobalShortCut.h \
+    MyGlobalShortCut/MyWinEventFilter.h
 
 FORMS    += mainwindow.ui \
     rolemanawindow.ui \

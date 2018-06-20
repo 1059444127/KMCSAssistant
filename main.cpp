@@ -10,6 +10,8 @@
 
 #include <QTranslator>
 
+#include<MyGlobalShortCut/MyGlobalShortCut.h>
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -20,6 +22,11 @@ int main(int argc, char *argv[])
     a.installTranslator(&translator);
 
     MainWindow w;
+
+    // 注册全局热键
+    MyGlobalShortCut *shortcut = new MyGlobalShortCut("Ctrl+Shift+V",&w);
+        QObject::connect(shortcut,SIGNAL(activated()),&w,SLOT(hotKeyActivated()));
+
     w.show();
 
     int firstBoot = 1;
