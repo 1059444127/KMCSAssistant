@@ -103,25 +103,55 @@
 <context>
     <name>QObject</name>
     <message>
-        <location filename="mainwindow.cpp" line="40"/>
+        <location filename="mainwindow.cpp" line="49"/>
         <source>Getting window success</source>
         <oldsource>Get window success</oldsource>
         <translation>成功获取窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="43"/>
+        <location filename="mainwindow.cpp" line="52"/>
+        <location filename="mainwindow.cpp" line="370"/>
+        <location filename="mainwindow.cpp" line="381"/>
+        <location filename="mainwindow.cpp" line="393"/>
+        <location filename="mainwindow.cpp" line="405"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="43"/>
+        <location filename="mainwindow.cpp" line="52"/>
         <source>The window is not started. Please try to restart or quit and start again.</source>
         <translation>窗口未启动，请尝试启动窗口或者退出后重新启动。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="44"/>
+        <location filename="mainwindow.cpp" line="53"/>
         <source>Getting window failure</source>
         <translation>获取窗口失败</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="434"/>
+        <source>KMCSAssistant running hidden</source>
+        <translation>KMCS助手后台运行中</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="445"/>
+        <source>Tips</source>
+        <translation>温馨提示</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="446"/>
+        <source>KMCSAssistant will running in the background.Please click the icon to display the main window.And press Ctrl+Shift+V shortcut keys can be used to automatically acquire data and validation all rules.</source>
+        <oldsource>KMCSAssistant will running in the background.Please click the icon to display the main window.</oldsource>
+        <translation>KMCS助手将会在后台运行，你可以点击托盘按钮显示主界面。且可以使用Ctrl+Shift+V快捷键自动获取数据并校验规则。</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="476"/>
+        <source>Show MainWindow</source>
+        <translation>显示主界面</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="479"/>
+        <source>Exit App</source>
+        <translation>退出</translation>
     </message>
     <message>
         <location filename="roleformwindow.cpp" line="22"/>

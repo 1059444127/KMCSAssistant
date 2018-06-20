@@ -442,8 +442,8 @@ void MainWindow::changeEvent(QEvent *) {
         mSysTrayIcon->show();
 
         // 显示消息球 - 第一个参数是标题 - 第二个参数是消息内容 - 第三个参数图标 - 第四个参数是超时毫秒数
-        mSysTrayIcon->showMessage("Tips",
-                                  "KMCSAssistant will running in the background.Please click the icon to display the main window.",
+        mSysTrayIcon->showMessage(QObject::tr("Tips"),
+                                  QObject::tr("KMCSAssistant will running in the background.Please click the icon to display the main window.And press Ctrl+Shift+V shortcut keys can be used to automatically acquire data and validation all rules."),
                                   QSystemTrayIcon::Information,
                                   1000);
     }
