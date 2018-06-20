@@ -4,9 +4,9 @@ class MyGlobalShortCut;
 class MyWinEventFilter : public QAbstractNativeEventFilter
 {
 public:
-MyWinEventFilter(MyGlobalShortCut *shortcut);
-~MyWinEventFilter();
-virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *);
+    MyWinEventFilter(MyGlobalShortCut *shortcut);
+    ~MyWinEventFilter();
+    virtual bool nativeEventFilter(const QByteArray &eventType, void *message, long *);
 private:
-MyGlobalShortCut *m_shortcut;
+    MyGlobalShortCut *m_shortcut;
 };

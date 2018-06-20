@@ -366,14 +366,22 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "=" || condi == "等于") {
                             if(validValue != singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
+//                                QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
+                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                          filed + " 未等于 " +  singelValue,
+                                                          QSystemTrayIcon::Warning,
+                                                          1000);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
                         if(condi == "!=" || condi == "不等于") {
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
+//                                QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
+                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                          filed + " 等于了 " +  singelValue,
+                                                          QSystemTrayIcon::Warning,
+                                                          1000);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -381,7 +389,11 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "like" || condi == "包含") {
                             if(!validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
+//                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
+                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                          filed + " 未" +  condi + " " +  singelValue,
+                                                          QSystemTrayIcon::Warning,
+                                                          1000);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -389,7 +401,11 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "notlike" || condi == "不包含") {
                             if(validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
+//                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
+                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                          filed + " 包含了 " +  singelValue,
+                                                          QSystemTrayIcon::Warning,
+                                                          1000);
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -501,5 +517,6 @@ void MainWindow::on_exitAppAction() {
  * @param event
  */
 void MainWindow::hotKeyActivated() {
-    qDebug() << "你按下了快捷键";
+    on_actionGet_triggered();
+    on_actionValidRole_triggered();
 }
