@@ -148,9 +148,9 @@ BOOL CALLBACK initData(HWND hWnd, LPARAM param)
         {
             // 获取编辑类型的句柄
             index++;
-            char text[255];
+            char text[2000];
             ::SendMessageA(hWnd, WM_GETTEXT, sizeof(text), (LPARAM)text);
-            QString result = QString::fromLocal8Bit(text, 255);
+            QString result = QString::fromLocal8Bit(text, sizeof(text));
             if (index == diagnIndex) {
                 // 病理诊断
                 if(result != NULL || result != "")
