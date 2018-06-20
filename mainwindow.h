@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,13 @@ private slots:
 
     void on_actionValidRole_triggered();
     void queryAllRole();
+    void changeEvent(QEvent *);
+    void on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
+    void createActions();
+    void createMenu();
+    void on_showMainAction();
+    void on_exitAppAction();
+    void hotKeyActivated();
 
 public:
     Ui::MainWindow *ui;

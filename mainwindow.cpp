@@ -9,6 +9,10 @@
 #include <QDebug>
 
 #include "rolemanawindow.h"
+#include <QSystemTrayIcon>
+#include <QAction>
+#include <QMenu>
+#include <QKeyEvent>
 
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlError>
@@ -28,6 +32,11 @@ int ismIndex;
 QSqlDatabase databaseR;
 QString sqlR;
 QList<QMap<QString, QString>> listR;
+
+QSystemTrayIcon *mSysTrayIcon;
+QAction *showMainAction;
+QAction *exitAppAction;
+QMenu *mMenu;
 
 /** 获取窗口
  * @brief getWindow
@@ -392,3 +401,105 @@ void MainWindow::on_actionValidRole_triggered()
   }
 }
 
+/** 处理最小化窗口
+ * @brief MainWindow::changeEvent
+ */
+void MainWindow::changeEvent(QEvent *) {
+    if(this->windowState() == Qt::WindowMinimized) {
+        // 最小化
+        // 隐藏主界面
+        this->hide();
+        // 创建QSystemTrayIcon对象
+        mSysTrayIcon = new QSystemTrayIcon(this);
+        // 设置图标
+        QIcon icon = QIcon(":/icon/appIcon");
+        mSysTrayIcon->setIcon(icon);
+        // 当鼠标移动到托盘上的图标时，会显示此处设置的内容
+        mSysTrayIcon->setToolTip(QObject::tr("KMCSAssistant running hidden"));
+
+        // 添加槽函数
+        connect(mSysTrayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason)));
+        createActions();
+        createMenu();
+
+        // 显示
+        mSysTrayIcon->show();
+
+        // 显示消息球 - 第一个参数是标题 - 第二个参数是消息内容 - 第三个参数图标 - 第四个参数是超时毫秒数
+        mSysTrayIcon->showMessage("Tips",
+                                  "KMCSAssistant will running in the background.Please click the icon to display the main window.",
+                                  QSystemTrayIcon::Information,
+                                  1000);
+    }
+}
+
+/** 槽函数 - 托盘图标操作
+ * @brief MainWindow::on_activeedSysTrayIcon
+ * @param reason
+ */
+void MainWindow::on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason) {
+    switch (reason) {
+    case QSystemTrayIcon::Trigger:
+        // 单击 - 显示主界面
+        this->showNormal();
+        this->activateWindow();
+        mSysTrayIcon->hide();
+        break;
+    case QSystemTrayIcon::DoubleClick:
+        // 双击
+        break;
+    default:
+        break;
+    }
+}
+
+/** 创建菜单动作
+ * @brief MainWindow::createActions
+ */
+void MainWindow::createActions() {
+    showMainAction = new QAction(QObject::tr("Show MainWindow"));
+    connect(showMainAction, SIGNAL(triggered()), this, SLOT(on_showMainAction()));
+
+    exitAppAction = new QAction(QObject::tr("Exit App"));
+    connect(exitAppAction, SIGNAL(triggered()), this, SLOT(on_exitAppAction()));
+}
+
+/** 创建菜单
+ * @brief MainWindow::createMenu
+ */
+void MainWindow::createMenu() {
+    mMenu = new QMenu(this);
+    // 增加显示主界面
+    mMenu->addAction(showMainAction);
+    // 添加分隔符
+    mMenu->addSeparator();
+    // 添加退出程序
+    mMenu->addAction(exitAppAction);
+    // 添加菜单
+    mSysTrayIcon->setContextMenu(mMenu);
+}
+
+/** 显示主界面
+ * @brief MainWindow::on_showMainAction
+ */
+void MainWindow::on_showMainAction() {
+    this->showNormal();
+    this->activateWindow();
+    mSysTrayIcon->hide();
+}
+
+/** 退出程序
+ * @brief MainWindow::on_exitAppAction
+ */
+void MainWindow::on_exitAppAction() {
+    mSysTrayIcon->hide();
+    exit(0);
+}
+
+/** 处理全局热键
+ * @brief MainWindow::hotKeyActivated
+ * @param event
+ */
+void MainWindow::hotKeyActivated() {
+    qDebug() << "你按下了快捷键";
+}

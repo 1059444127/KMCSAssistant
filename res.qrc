@@ -2,4 +2,7 @@
     <qresource prefix="/i18n">
         <file alias="zh_CN">KMCSAssistant_zh_CN.qm</file>
     </qresource>
+    <qresource prefix="/icon">
+        <file alias="appIcon">app.ico</file>
+    </qresource>
 </RCC>
