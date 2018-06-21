@@ -157,7 +157,7 @@ BOOL CALLBACK initData(HWND hWnd, LPARAM param)
         {
             // 获取编辑类型的句柄
             index++;
-            char text[2000];
+            char text[4000];
             ::SendMessageA(hWnd, WM_GETTEXT, sizeof(text), (LPARAM)text);
             QString result = QString::fromLocal8Bit(text, sizeof(text));
             if (index == diagnIndex) {
@@ -366,22 +366,28 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "=" || condi == "等于") {
                             if(validValue != singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-//                                QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
-                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
-                                                          filed + " 未等于 " +  singelValue,
-                                                          QSystemTrayIcon::Warning,
-                                                          1000);
+                                if(!mSysTrayIcon) {
+                                    QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
+                                } else {
+                                    mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                              filed + " 未等于 " +  singelValue,
+                                                              QSystemTrayIcon::Warning,
+                                                              1000);
+                                }
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
                         if(condi == "!=" || condi == "不等于") {
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-//                                QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
-                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
-                                                          filed + " 等于了 " +  singelValue,
-                                                          QSystemTrayIcon::Warning,
-                                                          1000);
+                                if(!mSysTrayIcon) {
+                                    QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
+                                } else {
+                                    mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                              filed + " 等于了 " +  singelValue,
+                                                              QSystemTrayIcon::Warning,
+                                                              1000);
+                                }
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -389,11 +395,14 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "like" || condi == "包含") {
                             if(!validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-//                                QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
-                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
-                                                          filed + " 未" +  condi + " " +  singelValue,
-                                                          QSystemTrayIcon::Warning,
-                                                          1000);
+                                if(!mSysTrayIcon) {
+                                    QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
+                                } else {
+                                    mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                              filed + " 未" +  condi + " " +  singelValue,
+                                                              QSystemTrayIcon::Warning,
+                                                              1000);
+                                }
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
@@ -401,11 +410,14 @@ void MainWindow::on_actionValidRole_triggered()
                         if(condi == "notlike" || condi == "不包含") {
                             if(validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
-//                                QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
-                                mSysTrayIcon->showMessage(QObject::tr("Warning"),
-                                                          filed + " 包含了 " +  singelValue,
-                                                          QSystemTrayIcon::Warning,
-                                                          1000);
+                                if(!mSysTrayIcon) {
+                                    QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
+                                } else {
+                                    mSysTrayIcon->showMessage(QObject::tr("Warning"),
+                                                              filed + " 包含了 " +  singelValue,
+                                                              QSystemTrayIcon::Warning,
+                                                              1000);
+                                }
                                 ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }

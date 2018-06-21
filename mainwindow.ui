@@ -152,7 +152,7 @@
     <string>ValidRole(&amp;V)</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+V</string>
+    <string>Shift+V</string>
    </property>
   </action>
   <action name="actionGet">

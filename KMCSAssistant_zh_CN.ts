@@ -110,10 +110,10 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="52"/>
-        <location filename="mainwindow.cpp" line="370"/>
-        <location filename="mainwindow.cpp" line="381"/>
-        <location filename="mainwindow.cpp" line="393"/>
-        <location filename="mainwindow.cpp" line="405"/>
+        <location filename="mainwindow.cpp" line="372"/>
+        <location filename="mainwindow.cpp" line="386"/>
+        <location filename="mainwindow.cpp" line="401"/>
+        <location filename="mainwindow.cpp" line="416"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
@@ -128,28 +128,28 @@
         <translation>获取窗口失败</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="434"/>
+        <location filename="mainwindow.cpp" line="446"/>
         <source>KMCSAssistant running hidden</source>
         <translation>KMCS助手后台运行中</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="445"/>
+        <location filename="mainwindow.cpp" line="457"/>
         <source>Tips</source>
         <translation>温馨提示</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="446"/>
+        <location filename="mainwindow.cpp" line="458"/>
         <source>KMCSAssistant will running in the background.Please click the icon to display the main window.And press Ctrl+Shift+V shortcut keys can be used to automatically acquire data and validation all rules.</source>
         <oldsource>KMCSAssistant will running in the background.Please click the icon to display the main window.</oldsource>
         <translation>KMCS助手将会在后台运行，你可以点击托盘按钮显示主界面。且可以使用Ctrl+Shift+V快捷键自动获取数据并校验规则。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="476"/>
+        <location filename="mainwindow.cpp" line="488"/>
         <source>Show MainWindow</source>
         <translation>显示主界面</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="479"/>
+        <location filename="mainwindow.cpp" line="491"/>
         <source>Exit App</source>
         <translation>退出</translation>
     </message>
