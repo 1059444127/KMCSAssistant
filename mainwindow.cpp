@@ -328,7 +328,7 @@ void MainWindow::on_actionValidRole_triggered()
             }
         }
         // 验证IF =
-        if(condi == "=") {
+        if(condi == "=" || condi == "等于") {
             if(validValue == value) {
                 // 2.1 满足IF, 验证THEN
                 validThen:
