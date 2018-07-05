@@ -5,12 +5,19 @@
 #include <QAction>
 #include <QMenu>
 #include <mainwindow.h>
+#include <QDesktopWidget>
+#include <QRect>
+#include <QDebug>
 
 MainWindow *mainwindow;
 Pop::Pop(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Pop)
 {
+    // 获取屏幕分辨率
+    QDesktopWidget *desk = QApplication::desktop();
+    QRect screen = desk->screenGeometry();
+    setGeometry(screen.width() * 0.9, screen.height() * 0.1, 96, 96);
     ui->setupUi(this);
     // 取消窗体边框
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowMinimizeButtonHint|Qt::Tool);

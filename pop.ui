@@ -16,8 +16,8 @@
   <widget class="QLabel" name="popLabel">
    <property name="geometry">
     <rect>
-     <x>150</x>
-     <y>80</y>
+     <x>0</x>
+     <y>0</y>
      <width>96</width>
      <height>96</height>
     </rect>
