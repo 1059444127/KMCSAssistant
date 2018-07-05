@@ -16,7 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-private slots:
+public slots:
     void on_actionGet_triggered();
 
     void on_actionClear_triggered();
@@ -31,9 +31,9 @@ private slots:
     void on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
     void createActions();
     void createMenu();
+    void hotKeyActivated();
     void on_showMainAction();
     void on_exitAppAction();
-    void hotKeyActivated();
 
 public:
     Ui::MainWindow *ui;

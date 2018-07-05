@@ -18,6 +18,8 @@
 #include <QtSql/QSqlError>
 #include <QtSql/QSqlQuery>
 
+#include <pop.h>
+
 HWND hwnd;
 MainWindow *m;
 int index = 0;
@@ -37,6 +39,8 @@ QSystemTrayIcon *mSysTrayIcon;
 QAction *showMainAction;
 QAction *exitAppAction;
 QMenu *mMenu;
+
+Pop *pop;
 
 /** 获取窗口
  * @brief getWindow
@@ -133,6 +137,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 1.从数据库查询出所有规则
     queryAllRole();
+
+    // 创建QSystemTrayIcon对象
+    mSysTrayIcon = new QSystemTrayIcon(this);
 }
 
 MainWindow::~MainWindow()
@@ -272,11 +279,11 @@ void MainWindow::on_actionValidRole_triggered()
     QString filed, condi, value;
     QString validValue;
 
-    sex = ui->leSex->text();
-    ism = ui->leIsm->text();
-    diagn = ui->teDiagn->toPlainText();
-    gdesc = ui->teGdesc->toPlainText();
-    micro = ui->teMicro->toPlainText();
+    sex = m->ui->leSex->text();
+    ism = m->ui->leIsm->text();
+    diagn = m->ui->teDiagn->toPlainText();
+    gdesc = m->ui->teGdesc->toPlainText();
+    micro = m->ui->teMicro->toPlainText();
     // 2.遍历规则
     for(int i = 0; i < listR.size(); i++) {
         map = listR[i];
@@ -318,7 +325,7 @@ void MainWindow::on_actionValidRole_triggered()
         if(filed == "micro" || filed == "镜下所见") {
             validValue = micro;
         }
-        ui->statusBar->showMessage("恭喜，未触发任何规则。");
+        m->ui->statusBar->showMessage("恭喜，未触发任何规则。");
 
         // 验证IF like
         if(condi == "like" || condi == "包含") {
@@ -371,7 +378,7 @@ void MainWindow::on_actionValidRole_triggered()
                                                           filed + " 未等于 " +  singelValue,
                                                           QSystemTrayIcon::Warning,
                                                           1000);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
+                                m->ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
                         if(condi == "!=" || condi == "不等于") {
@@ -382,7 +389,7 @@ void MainWindow::on_actionValidRole_triggered()
                                                           filed + " 等于了 " +  singelValue,
                                                           QSystemTrayIcon::Warning,
                                                           1000);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
+                                m->ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
                         // 验证THEN like
@@ -394,7 +401,7 @@ void MainWindow::on_actionValidRole_triggered()
                                                           filed + " 未" +  condi + " " +  singelValue,
                                                           QSystemTrayIcon::Warning,
                                                           1000);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
+                                m->ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
                         // 验证THEN notlike
@@ -406,7 +413,7 @@ void MainWindow::on_actionValidRole_triggered()
                                                           filed + " 包含了 " +  singelValue,
                                                           QSystemTrayIcon::Warning,
                                                           1000);
-                                ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
+                                m->ui->statusBar->showMessage("失败！触发" + ROLENAME + ID);
                             }
                         }
 
@@ -425,8 +432,6 @@ void MainWindow::changeEvent(QEvent *) {
         // 最小化
         // 隐藏主界面
         this->hide();
-        // 创建QSystemTrayIcon对象
-        mSysTrayIcon = new QSystemTrayIcon(this);
         // 设置图标
         QIcon icon = QIcon(":/icon/appIcon");
         mSysTrayIcon->setIcon(icon);
@@ -446,6 +451,10 @@ void MainWindow::changeEvent(QEvent *) {
                                   QObject::tr("KMCSAssistant will running in the background.Please click the icon to display the main window.And press Ctrl+Shift+V shortcut keys can be used to automatically acquire data and validation all rules."),
                                   QSystemTrayIcon::Information,
                                   1000);
+
+        // 显示Pop
+        pop = new Pop();
+        pop->show();
     }
 }
 
@@ -457,9 +466,7 @@ void MainWindow::on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason
     switch (reason) {
     case QSystemTrayIcon::Trigger:
         // 单击 - 显示主界面
-        this->showNormal();
-        this->activateWindow();
-        mSysTrayIcon->hide();
+        on_showMainAction();
         break;
     case QSystemTrayIcon::DoubleClick:
         // 双击
@@ -499,9 +506,10 @@ void MainWindow::createMenu() {
  * @brief MainWindow::on_showMainAction
  */
 void MainWindow::on_showMainAction() {
-    this->showNormal();
-    this->activateWindow();
+    m->showNormal();
+    m->activateWindow();
     mSysTrayIcon->hide();
+    pop->hide();
 }
 
 /** 退出程序
@@ -520,3 +528,4 @@ void MainWindow::hotKeyActivated() {
     on_actionGet_triggered();
     on_actionValidRole_triggered();
 }
+

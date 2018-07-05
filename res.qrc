@@ -4,5 +4,8 @@
     </qresource>
     <qresource prefix="/icon">
         <file alias="appIcon">app.ico</file>
+        <file alias="check">icon/check.png</file>
+        <file alias="left">icon/left.png</file>
+        <file alias="right">icon/right.png</file>
     </qresource>
 </RCC>

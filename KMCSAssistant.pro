@@ -29,17 +29,20 @@ SOURCES += main.cpp\
     rolemanawindow.cpp \
     roleformwindow.cpp \
     MyGlobalShortCut/MyGlobalShortCut.cpp \
-    MyGlobalShortCut/MyWinEventFilter.cpp
+    MyGlobalShortCut/MyWinEventFilter.cpp \
+    pop.cpp
 
 HEADERS  += mainwindow.h \
     rolemanawindow.h \
     roleformwindow.h \
     MyGlobalShortCut/MyGlobalShortCut.h \
-    MyGlobalShortCut/MyWinEventFilter.h
+    MyGlobalShortCut/MyWinEventFilter.h \
+    pop.h
 
 FORMS    += mainwindow.ui \
     rolemanawindow.ui \
-    roleformwindow.ui
+    roleformwindow.ui \
+    pop.ui
 
 DISTFILES += \
     app.rc
