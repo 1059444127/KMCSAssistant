@@ -7,6 +7,7 @@
 #include <QDesktopWidget>
 #include <QRect>
 #include <QDebug>
+#include <QEvent>
 
 Pop::Pop(QWidget *parent) :
     QWidget(parent),
@@ -26,8 +27,7 @@ Pop::Pop(QWidget *parent) :
 
     // 显示为check图标
     pix = new QPixmap(ui->popLabel->size());
-    pix->load(":/icon/check");
-    ui->popLabel->setPixmap(*pix);
+    setValidState(2);
 
     // 创建一个菜单
     popMenu = new QMenu;
@@ -75,6 +75,32 @@ void Pop::mouseMoveEvent(QMouseEvent *event) {
     this->move(event->globalPos() - relativePos);
 }
 
+/** 重写鼠标释放事件
+ * @brief Pop::mouseReleaseEvent
+ * @param event
+ */
+void Pop::mouseReleaseEvent(QMouseEvent *event) {
+    on_popValidAction();
+}
+
+/** 重写鼠标移入事件
+ * @brief Pop::enterEvent
+ * @param event
+ */
+void Pop::enterEvent(QEvent *event) {
+    if(flag == 1) {
+        setValidState(2);
+    }
+}
+
+/** 重写鼠标移除事件
+ * @brief Pop::leaveEvent
+ * @param event
+ */
+void Pop::leaveEvent(QEvent *event) {
+    flag = 1;
+}
+
 /** 隐藏Pop
  * @brief Pop::on_popHiddenAction
  */
@@ -101,4 +127,24 @@ void Pop::on_popExitAction() {
  */
 void Pop::on_popValidAction() {
     emit validRoleSignal();
+}
+
+/** 设置验证状态
+ * @brief Pop::setValidState
+ * @param val
+ */
+void Pop::setValidState(int val) {
+    switch (val) {
+    case 1:
+        pix->load(":/icon/right");
+        break;
+    case 0:
+        pix->load(":/icon/left");
+        break;
+    default:
+        pix->load(":/icon/check");
+        break;
+    }
+    flag = 0;
+    ui->popLabel->setPixmap(*pix);
 }
