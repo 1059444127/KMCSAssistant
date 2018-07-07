@@ -20,6 +20,11 @@ public:
     explicit Pop(QWidget *parent = 0);
     ~Pop();
 
+signals:
+    void showMainWindowSignal();
+    void validRoleSignal();
+    void exitAppSignal();
+
 private:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);

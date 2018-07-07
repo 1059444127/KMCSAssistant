@@ -18,22 +18,21 @@ public:
 
 public slots:
     void on_actionGet_triggered();
-
     void on_actionClear_triggered();
-
-    void on_actionAuthor_triggered();
-
-    void on_actionRoleMana_triggered();
-
-    void on_actionValidRole_triggered();
-    void queryAllRole();
-    void changeEvent(QEvent *);
-    void on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
-    void createActions();
-    void createMenu();
-    void hotKeyActivated();
     void on_showMainAction();
     void on_exitAppAction();
+    void on_actionAuthor_triggered();
+    void hotKeyActivated();
+    void on_actionRoleMana_triggered();
+    void on_activeedSysTrayIcon(QSystemTrayIcon::ActivationReason reason);
+    void on_actionValidRole_triggered();
+
+private:
+    void queryAllRole();
+    void changeEvent(QEvent *);
+    void createActions();
+    void createMenu();
+
 
 public:
     Ui::MainWindow *ui;

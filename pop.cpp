@@ -4,12 +4,10 @@
 #include "QPixmap"
 #include <QAction>
 #include <QMenu>
-#include <mainwindow.h>
 #include <QDesktopWidget>
 #include <QRect>
 #include <QDebug>
 
-MainWindow *mainwindow;
 Pop::Pop(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Pop)
@@ -88,19 +86,19 @@ void Pop::on_popHiddenAction() {
  * @brief Pop::on_popShowMainWindowAction
  */
 void Pop::on_popShowMainWindowAction() {
-    mainwindow->on_showMainAction();
+    emit showMainWindowSignal();
 }
 
 /** 退出
  * @brief Pop::on_popExitAction
  */
 void Pop::on_popExitAction() {
-    mainwindow->on_exitAppAction();
+    emit exitAppSignal();
 }
 
 /** 规则校验
  * @brief Pop::on_popValidAction
  */
 void Pop::on_popValidAction() {
-    mainwindow->on_actionValidRole_triggered();
+    emit validRoleSignal();
 }

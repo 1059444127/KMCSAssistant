@@ -140,6 +140,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // 创建QSystemTrayIcon对象
     mSysTrayIcon = new QSystemTrayIcon(this);
+
+    // 创建Pop槽函数链接
+    pop = new Pop();
+    connect(pop, SIGNAL(showMainWindowSignal()), SLOT(on_showMainAction()));
+    connect(pop, SIGNAL(exitAppSignal()), SLOT(on_exitAppAction()));
+    connect(pop, SIGNAL(validRoleSignal()), SLOT(on_actionValidRole_triggered()));
 }
 
 MainWindow::~MainWindow()
@@ -489,7 +495,6 @@ void MainWindow::changeEvent(QEvent *) {
                                   1000);
 
         // 显示Pop
-        pop = new Pop();
         pop->show();
     }
 }
