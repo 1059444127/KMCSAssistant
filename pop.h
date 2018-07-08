@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <QAction>
 #include <QMenu>
+#include <QGraphicsDropShadowEffect>
 
 namespace Ui {
 class Pop;
@@ -20,7 +21,7 @@ class Pop : public QWidget
 public:
     explicit Pop(QWidget *parent = 0);
     ~Pop();
-    void setValidState(int val);
+    void setValidState(int val, QString txt);
 
 signals:
     void showMainWindowSignal();
@@ -36,12 +37,15 @@ private:
     Ui::Pop *ui;
     QPoint relativePos;
     QPixmap *pix;
+    QPixmap *pix2;
     QMenu *popMenu;
     QAction *popShowMainWindow;
     QAction *popValid;
     QAction *popHidden;
     QAction *popExit;
     int flag = 1;
+    QGraphicsDropShadowEffect *shadow_effect;
+    QGraphicsDropShadowEffect *shadow_effect2;
 
 private slots:
     void on_popHiddenAction();

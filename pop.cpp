@@ -8,6 +8,7 @@
 #include <QRect>
 #include <QDebug>
 #include <QEvent>
+#include <QGraphicsDropShadowEffect>
 
 Pop::Pop(QWidget *parent) :
     QWidget(parent),
@@ -16,7 +17,7 @@ Pop::Pop(QWidget *parent) :
     // 获取屏幕分辨率
     QDesktopWidget *desk = QApplication::desktop();
     QRect screen = desk->screenGeometry();
-    setGeometry(screen.width() * 0.9, screen.height() * 0.1, 96, 96);
+    setGeometry(screen.width() * 0.85, screen.height() * 0.1, 64, 64);
     ui->setupUi(this);
     // 取消窗体边框
     this->setWindowFlags(Qt::FramelessWindowHint|Qt::WindowStaysOnTopHint|Qt::WindowMinimizeButtonHint|Qt::Tool);
@@ -25,9 +26,19 @@ Pop::Pop(QWidget *parent) :
     // 设置鼠标样式为手型
     this->setCursor(QCursor(Qt::PointingHandCursor));
 
-    // 显示为check图标
-    pix = new QPixmap(ui->popLabel->size());
-    setValidState(2);
+    // 设置阴影
+    shadow_effect = new QGraphicsDropShadowEffect(this);
+    shadow_effect->setOffset(5, 5);
+    shadow_effect->setColor(Qt::gray);
+    shadow_effect->setBlurRadius(16);
+    shadow_effect2 = new QGraphicsDropShadowEffect(this);
+    shadow_effect2->setOffset(5, 5);
+    shadow_effect2->setColor(Qt::gray);
+    shadow_effect2->setBlurRadius(16);
+    ui->popLabel2->setGraphicsEffect(shadow_effect);
+    ui->popLabel->setGraphicsEffect(shadow_effect2);
+
+    setValidState(2, "点我验证");
 
     // 创建一个菜单
     popMenu = new QMenu;
@@ -61,7 +72,6 @@ void Pop::mousePressEvent(QMouseEvent *event) {
        relativePos = event->globalPos() - this->pos();
    }
    if(event->button() == Qt::RightButton) {
-       // 右键
        // 显示右键菜单
        popMenu->exec(event->globalPos());
    }
@@ -89,7 +99,7 @@ void Pop::mouseReleaseEvent(QMouseEvent *event) {
  */
 void Pop::enterEvent(QEvent *event) {
     if(flag == 1) {
-        setValidState(2);
+        setValidState(2, "点我验证");
     }
 }
 
@@ -133,18 +143,46 @@ void Pop::on_popValidAction() {
  * @brief Pop::setValidState
  * @param val
  */
-void Pop::setValidState(int val) {
+void Pop::setValidState(int val, QString txt) {
+    pix = new QPixmap(ui->popLabel->size());
+    QString borderColor, fontColor;
     switch (val) {
     case 1:
         pix->load(":/icon/right");
+        borderColor = "#1296db";
+        fontColor = "#1296db";
         break;
     case 0:
         pix->load(":/icon/left");
+        borderColor = "#d81e06";
+        fontColor = "#d81e06";
         break;
     default:
         pix->load(":/icon/check");
+        borderColor = "#d4237a";
+        fontColor = "#d4237a";
         break;
     }
     flag = 0;
     ui->popLabel->setPixmap(*pix);
+    // 设置样式
+    ui->popLabel->setStyleSheet("background-color: #dbdbdb;"
+                                "border:1px solid "+borderColor+";"
+                                "border-right-style: none;"
+                                "border-top-left-radius:32px;"
+                                "border-bottom-left-radius:32px");
+
+    ui->popLabel2->setStyleSheet("background-color: #dbdbdb;"
+                                 "border:1px solid "+borderColor+";"
+                                 "border-left-style: none;"
+                                 "border-top-right-radius:32px;"
+                                 "border-bottom-right-radius:32px;"
+                                 "font-size:16px;"
+                                 "font-weight:bold;"
+                                 "font-family: SimHei,Microsoft YaHei,Serif;"
+                                 "color:"+fontColor);
+    // 设置内容
+//    ui->popLabel2->setText("<p ><font color=#d4237a>点我验证</font></p>");
+    ui->popLabel2->setText(txt);
+    ui->popLabel2->adjustSize();
 }

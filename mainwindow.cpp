@@ -285,7 +285,7 @@ void MainWindow::on_actionValidRole_triggered()
     QString ID, ROLENAME, IF, THEN;
     QStringList ifs, thens;
     QString filed, condi, value;
-    QString validValue;
+    QString validValue, msg = "<p>警告<br><font size=16px color=#707070>";
     boolean flag = true;
 
     sex = m->ui->leSex->text();
@@ -383,6 +383,7 @@ void MainWindow::on_actionValidRole_triggered()
                             if(validValue != singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
                                 flag = false;
+                                msg += filed + " 未等于 " +  singelValue + "<br>";
                                 if(!mSysTrayIcon) {
                                     QMessageBox::warning(this, "警告", filed + " 未等于 " +  singelValue);
                                 } else {
@@ -398,6 +399,7 @@ void MainWindow::on_actionValidRole_triggered()
                             if(validValue == singelValue) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
                                 flag = false;
+                                msg += filed + " 等于了 " +  singelValue + "<br>";
                                 if(!mSysTrayIcon) {
                                     QMessageBox::warning(this, "警告", filed + " 等于了 " +  singelValue);
                                 } else {
@@ -414,6 +416,7 @@ void MainWindow::on_actionValidRole_triggered()
                             if(!validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
                                 flag = false;
+                                msg += filed + " 未" +  condi + " " +  singelValue + "<br>";
                                 if(!mSysTrayIcon) {
                                     QMessageBox::warning(this, "警告", filed + " 未" +  condi + " " +  singelValue);
                                 } else {
@@ -430,6 +433,7 @@ void MainWindow::on_actionValidRole_triggered()
                             if(validValue.contains(singelValue)) {
                                 // 2.1.1 满足THEN, 触发当前规则，弹出提示
                                 flag = false;
+                                msg += filed + " 包含了 " +  singelValue + "<br>";
                                 if(!mSysTrayIcon) {
                                     QMessageBox::warning(this, "警告", filed + " 包含了 " +  singelValue);
                                 } else {
@@ -448,7 +452,8 @@ void MainWindow::on_actionValidRole_triggered()
         }
     }
     // 设置pop状态
-    pop->setValidState(flag?1:0);
+    msg = msg.mid(0, msg.lastIndexOf("<br>"));
+    pop->setValidState(flag?1:0, flag?"验证通过":msg + "</font></p>");
 }
 
 /** 处理最小化窗口
@@ -551,7 +556,7 @@ void MainWindow::on_exitAppAction() {
  * @param event
  */
 void MainWindow::hotKeyActivated() {
-    on_actionGet_triggered();
-//    on_actionValidRole_triggered();
+//    on_actionGet_triggered();
+    on_actionValidRole_triggered();
 }
 
