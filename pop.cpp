@@ -43,7 +43,9 @@ Pop::Pop(QWidget *parent) :
     // 创建一个菜单
     popMenu = new QMenu;
     popValid = new QAction(QObject::tr("Valid"), this);
-    connect(popValid, SIGNAL(triggered()), this, SLOT(on_popValidAction()));
+    connect(popValid, SIGNAL(triggered()), this, SLOT(on_popGetAndValidAction()));
+    popGetAndValid = new QAction(QObject::tr("GetAndValid"), this);
+    connect(popGetAndValid, SIGNAL(triggered()), this, SLOT(on_popValidAction()));
     popShowMainWindow = new QAction(QObject::tr("ShowMainWindow"), this);
     QObject::connect(popShowMainWindow, SIGNAL(triggered()), this, SLOT(on_popShowMainWindowAction()));
     popHidden = new QAction(QObject::tr("Hidden"), this);
@@ -52,6 +54,7 @@ Pop::Pop(QWidget *parent) :
     QObject::connect(popExit, SIGNAL(triggered()), this, SLOT(on_popExitAction()));
 
     popMenu->addAction(popValid);
+    popMenu->addAction(popGetAndValid);
     popMenu->addAction(popShowMainWindow);
     popMenu->addAction(popHidden);
     popMenu->addAction(popExit);
@@ -137,6 +140,13 @@ void Pop::on_popExitAction() {
  */
 void Pop::on_popValidAction() {
     emit validRoleSignal();
+}
+
+/** 获取数据并规则校验
+ * @brief Pop::on_popGetAndValidAction
+ */
+void Pop::on_popGetAndValidAction() {
+    emit getAndValidRoleSignal();
 }
 
 /** 设置验证状态

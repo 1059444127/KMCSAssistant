@@ -148,6 +148,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(pop, SIGNAL(showMainWindowSignal()), SLOT(on_showMainAction()));
     connect(pop, SIGNAL(exitAppSignal()), SLOT(on_exitAppAction()));
     connect(pop, SIGNAL(validRoleSignal()), SLOT(hotKeyActivated()));
+    connect(pop, SIGNAL(getAndValidRoleSignal()), SLOT(on_actionValidRole_triggered()));
 }
 
 MainWindow::~MainWindow()
@@ -556,7 +557,7 @@ void MainWindow::on_exitAppAction() {
  * @param event
  */
 void MainWindow::hotKeyActivated() {
-//    on_actionGet_triggered();
+    on_actionGet_triggered();
     on_actionValidRole_triggered();
 }
 

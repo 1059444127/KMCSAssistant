@@ -27,6 +27,7 @@ signals:
     void showMainWindowSignal();
     void validRoleSignal();
     void exitAppSignal();
+    void getAndValidRoleSignal();
 
 private:
     void mousePressEvent(QMouseEvent *event);
@@ -41,6 +42,7 @@ private:
     QMenu *popMenu;
     QAction *popShowMainWindow;
     QAction *popValid;
+    QAction *popGetAndValid;
     QAction *popHidden;
     QAction *popExit;
     int flag = 1;
@@ -52,6 +54,7 @@ private slots:
     void on_popExitAction();
     void on_popValidAction();
     void on_popShowMainWindowAction();
+    void on_popGetAndValidAction();
 };
 
 #endif // POP_H

@@ -66,7 +66,8 @@
     </message>
     <message>
         <location filename="mainwindow.ui" line="155"/>
-        <source>Ctrl+Shift+V</source>
+        <source>Shift+V</source>
+        <oldsource>Ctrl+Shift+V</oldsource>
         <translation></translation>
     </message>
     <message>
@@ -101,55 +102,73 @@
     </message>
 </context>
 <context>
+    <name>Pop</name>
+    <message>
+        <location filename="pop.ui" line="14"/>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="pop.ui" line="38"/>
+        <source>TextLabel</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="pop.ui" line="63"/>
+        <source>2</source>
+        <translation></translation>
+    </message>
+</context>
+<context>
     <name>QObject</name>
     <message>
-        <location filename="mainwindow.cpp" line="49"/>
+        <location filename="mainwindow.cpp" line="53"/>
         <source>Getting window success</source>
         <oldsource>Get window success</oldsource>
         <translation>成功获取窗口</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="52"/>
-        <location filename="mainwindow.cpp" line="372"/>
-        <location filename="mainwindow.cpp" line="386"/>
-        <location filename="mainwindow.cpp" line="401"/>
-        <location filename="mainwindow.cpp" line="416"/>
+        <location filename="mainwindow.cpp" line="58"/>
+        <location filename="mainwindow.cpp" line="391"/>
+        <location filename="mainwindow.cpp" line="407"/>
+        <location filename="mainwindow.cpp" line="424"/>
+        <location filename="mainwindow.cpp" line="441"/>
         <source>Warning</source>
         <translation>警告</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="52"/>
+        <location filename="mainwindow.cpp" line="58"/>
         <source>The window is not started. Please try to restart or quit and start again.</source>
         <translation>窗口未启动，请尝试启动窗口或者退出后重新启动。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="53"/>
+        <location filename="mainwindow.cpp" line="59"/>
         <source>Getting window failure</source>
         <translation>获取窗口失败</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="446"/>
+        <location filename="mainwindow.cpp" line="472"/>
         <source>KMCSAssistant running hidden</source>
         <translation>KMCS助手后台运行中</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="457"/>
+        <location filename="mainwindow.cpp" line="483"/>
         <source>Tips</source>
         <translation>温馨提示</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="458"/>
+        <location filename="mainwindow.cpp" line="484"/>
         <source>KMCSAssistant will running in the background.Please click the icon to display the main window.And press Ctrl+Shift+V shortcut keys can be used to automatically acquire data and validation all rules.</source>
         <oldsource>KMCSAssistant will running in the background.Please click the icon to display the main window.</oldsource>
         <translation>KMCS助手将会在后台运行，你可以点击托盘按钮显示主界面。且可以使用Ctrl+Shift+V快捷键自动获取数据并校验规则。</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="488"/>
+        <location filename="mainwindow.cpp" line="515"/>
         <source>Show MainWindow</source>
         <translation>显示主界面</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="491"/>
+        <location filename="mainwindow.cpp" line="518"/>
         <source>Exit App</source>
         <translation>退出</translation>
     </message>
@@ -233,6 +252,31 @@
         <location filename="rolemanawindow.cpp" line="46"/>
         <source>THEN</source>
         <translation>那么</translation>
+    </message>
+    <message>
+        <location filename="pop.cpp" line="45"/>
+        <source>Valid</source>
+        <translation>校验</translation>
+    </message>
+    <message>
+        <location filename="pop.cpp" line="47"/>
+        <source>GetAndValid</source>
+        <translation>获取并校验</translation>
+    </message>
+    <message>
+        <location filename="pop.cpp" line="49"/>
+        <source>ShowMainWindow</source>
+        <translation>显示主界面</translation>
+    </message>
+    <message>
+        <location filename="pop.cpp" line="51"/>
+        <source>Hidden</source>
+        <translation>隐藏悬浮窗</translation>
+    </message>
+    <message>
+        <location filename="pop.cpp" line="53"/>
+        <source>Exit</source>
+        <translation>退出程序</translation>
     </message>
 </context>
 <context>
