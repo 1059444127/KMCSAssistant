@@ -29,11 +29,11 @@ Pop::Pop(QWidget *parent) :
     // 设置阴影
     shadow_effect = new QGraphicsDropShadowEffect(this);
     shadow_effect->setOffset(5, 5);
-    shadow_effect->setColor(Qt::gray);
+    shadow_effect->setColor(QColor("#888888"));
     shadow_effect->setBlurRadius(16);
     shadow_effect2 = new QGraphicsDropShadowEffect(this);
     shadow_effect2->setOffset(5, 5);
-    shadow_effect2->setColor(Qt::gray);
+    shadow_effect2->setColor(QColor("#888888"));
     shadow_effect2->setBlurRadius(16);
     ui->popLabel2->setGraphicsEffect(shadow_effect);
     ui->popLabel->setGraphicsEffect(shadow_effect2);
